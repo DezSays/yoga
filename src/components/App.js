@@ -3,6 +3,8 @@ import '../App.css';
 import { useDispatch, useSelector} from 'react-redux'
 import incrementCount from '../actions/incrementCount.js' 
 import decrementCount from '../actions/decrementCount.js'
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 function App() {
   const [englishName, setEnglishName] = useState('')
@@ -30,13 +32,18 @@ function App() {
 yogaPoses()
 
   return (
-    <div className="App">
-      <p>{englishName}</p>
-      <p>{sanskritName}</p>
-      <img src={img} alt={englishName}/>
-      <button onClick={() => dispatch(decrementCount(1))}>previous</button>
-      <button onClick={() => dispatch(incrementCount(1))}>next</button>
-    </div>
+  <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={img}  alt={englishName} />
+      <Card.Body>
+        <Card.Title>{englishName}</Card.Title>
+        <Card.Text>
+          The Sanskrit name for this pose is {sanskritName}.
+        </Card.Text>
+        <Button onClick={() => dispatch(decrementCount(1))} variant="primary">Previous</Button>
+        <Button onClick={() => dispatch(incrementCount(1))} variant="primary">Next</Button>
+      </Card.Body>
+    </Card>
+
   );
 }
 
